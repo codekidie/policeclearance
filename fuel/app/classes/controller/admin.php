@@ -13,7 +13,7 @@ class Controller_Admin extends Controller_Base
 			if (Auth::check())
 			{
 				$admin_group_id = Config::get('auth.driver', 'Simpleauth') == 'Ormauth' ? 6 : 100;
-				if ( ! Auth::member($admin_group_id))
+				if ( ! Auth::member($admin_group_id) && ! Auth::member(50))
 				{
 					Session::set_flash('error', e('You don\'t have access to the admin panel'));
 					Response::redirect('/');
@@ -21,7 +21,7 @@ class Controller_Admin extends Controller_Base
 			}
 			else
 			{
-				Response::redirect('admin/login');
+				Response::redirect('/');
 			}
 		}
 	}

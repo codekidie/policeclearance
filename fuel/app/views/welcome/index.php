@@ -30,6 +30,9 @@
                     <li class="">
                     <?php echo Html::anchor('admin/login', 'Login', array('class' => 'page-scroll','style' => 'font-size:16px')); ?>
                     </li>
+                      <li class="">
+                    <?php echo Html::anchor('register/create', 'Register', array('class' => 'page-scroll','style' => 'font-size:16px')); ?>
+                    </li>
                    
                 </ul>
             </div>

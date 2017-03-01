@@ -1,5 +1,8 @@
 <?php echo Form::open(array("class"=>"form-horizontal")); ?>
+	<div class="container">
+<h3>Clearance Form</h3>
 
+	<div class="col-md-8">
 	<fieldset>
 	<div class="row">
 	   <div class="col-md-4 ">
@@ -22,8 +25,18 @@
  	  <div class="col-md-3">
 		<div class="form-group">
 			<?php echo Form::label('Firstname', 'firstname', array('class'=>'control-label')); ?>
-
-				<?php echo Form::input('firstname', Input::post('firstname', isset($clearanceform) ? $clearanceform->firstname : ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Firstname')); ?>
+				<?php 
+					if (Auth::get('group') == 50) {
+						$firstname = Auth::get('firstname');
+					}
+					else if(isset($clearanceform))
+					{
+					    $firstname = $clearanceform->firstname;
+					}else{
+						$firstname = '';
+					}
+				 ?>
+				<?php echo Form::input('firstname', Input::post('firstname', $firstname), array('class' => 'col-md-4 form-control', 'placeholder'=>'Firstname')); ?>
 
 		</div>
 	  </div>
@@ -31,8 +44,19 @@
 	  	
 		<div class="form-group">
 			<?php echo Form::label('Middlename', 'middlename', array('class'=>'control-label')); ?>
+				<?php 
+					if (Auth::get('group') == 50) {
+						$middlename = Auth::get('middlename');
+					}
+					else if(isset($clearanceform))
+					{
+					    $middlename = $clearanceform->middlename;
+					}else{
+						$middlename = '';
+					}
+				?>
 
-				<?php echo Form::input('middlename', Input::post('middlename', isset($clearanceform) ? $clearanceform->middlename : ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Middlename')); ?>
+				<?php echo Form::input('middlename', Input::post('middlename', $middlename), array('class' => 'col-md-4 form-control', 'placeholder'=>'Middlename')); ?>
 
 		</div>
 	</div>
@@ -40,7 +64,17 @@
 		
 		<div class="form-group">
 			<?php echo Form::label('Lastname', 'lastname', array('class'=>'control-label')); ?>
-
+				<?php 
+					if (Auth::get('group') == 50) {
+						$lastname = Auth::get('lastname');
+					}
+					else if(isset($clearanceform))
+					{
+					    $lastname = $clearanceform->lastname;
+					}else{
+						$lastname = '';
+					}
+				?>
 				<?php echo Form::input('lastname', Input::post('lastname', isset($clearanceform) ? $clearanceform->lastname : ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Lastname')); ?>
 
 		</div>
@@ -190,6 +224,9 @@
 	</div>	
 		<div class="form-group">
 			<label class='control-label'>&nbsp;</label>
-			<?php echo Form::submit('submit', 'Save', array('class' => 'btn btn-primary')); ?>		</div>
+			<?php echo Form::submit('submit', 'Apply', array('class' => 'btn btn-primary')); ?>		
+		</div>
 	</fieldset>
+	</div>
+	</div>	
 <?php echo Form::close(); ?>

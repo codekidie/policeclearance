@@ -40,6 +40,6 @@
 <p>No Clearanceforms.</p>
 
 <?php endif; ?><p>
-	<?php echo Html::anchor('admin/clearanceform/create', 'Add new Clearanceform', array('class' => 'btn btn-success')); ?>
+	<?php //echo Html::anchor('admin/clearanceform/create', 'Add new Clearanceform', array('class' => 'btn btn-success')); ?>
 
 </p>

@@ -47,9 +47,14 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 
 				if ($clearanceform and $clearanceform->save())
 				{
-					Session::set_flash('success', e('Added clearance form #'.$clearanceform->id.'.'));
-
-					Response::redirect('admin/clearanceform');
+					if (Auth::get('group') == 100) {
+						Session::set_flash('success', e('Added clearance form #'.$clearanceform->id.'.'));
+						Response::redirect('admin/clearanceform');
+					}else if (Auth::get('group') == 50) {
+						Session::set_flash('success', e('Application Successfully Submitted'));
+						Response::redirect('admin/clearanceform/create');
+					}
+					
 				}
 
 				else

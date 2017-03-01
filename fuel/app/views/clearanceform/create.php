@@ -1,5 +1,3 @@
-<h2>New <span class='muted'>Clearanceform</span></h2>
-<br>
 
 <?php echo render('clearanceform/_form'); ?>
 
