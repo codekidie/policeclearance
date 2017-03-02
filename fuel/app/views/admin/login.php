@@ -1,19 +1,22 @@
-				<center><h1>Login</h1></center>
 
 <div class="row">
-	<div class="col-md-4 col-md-offset-4">
-		<?php echo Form::open(array()); ?>
+	<div class="col-md-4 col-md-offset-4 login-wrapper">
+<center><h1>Login</h1></center>
+	<?php if (isset($login_error)): ?>
+				<div class="error">
+					<div class="alert alert-warning">
+					  <strong>Warning!</strong> <?php echo $login_error; ?>
+					</div>
+				</div>
+	<?php endif; ?>
 
+		<?php echo Form::open(array()); ?>
 			<?php if (isset($_GET['destination'])): ?>
 				<?php echo Form::hidden('destination', $_GET['destination']); ?>
 			<?php endif; ?>
 
-			<?php if (isset($login_error)): ?>
-				<div class="error"><?php echo $login_error; ?></div>
-			<?php endif; ?>
-
 			<div class="form-group <?php echo ! $val->error('email') ?: 'has-error' ?>">
-				<label for="email">Email or Username:</label>
+				<label for="email">Username :</label>
 				<?php echo Form::input('email', Input::post('email'), array('class' => 'form-control', 'placeholder' => 'Email or Username', 'autofocus')); ?>
 
 				<?php if ($val->error('email')): ?>
@@ -22,7 +25,7 @@
 			</div>
 
 			<div class="form-group <?php echo ! $val->error('password') ?: 'has-error' ?>">
-				<label for="password">Password:</label>
+				<label for="password">Password :</label>
 				<?php echo Form::password('password', null, array('class' => 'form-control', 'placeholder' => 'Password')); ?>
 
 				<?php if ($val->error('password')): ?>
@@ -31,7 +34,9 @@
 			</div>
 
 			<div class="actions">
-				<?php echo Form::submit(array('value'=>'Login', 'name'=>'submit', 'class' => 'btn btn-lg btn-primary btn-block')); ?>
+				<?php echo Form::submit(array('value'=>'Login', 'name'=>'submit', 'class' => 'btn btn-md btn-primary btn-block')); ?>
+				<?php echo Html::anchor('register/create', 'Register', array('class' => 'btn btn-md btn-info btn-block')) ?>
+
 			</div>
 
 		<?php echo Form::close(); ?>

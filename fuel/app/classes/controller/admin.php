@@ -60,7 +60,7 @@ class Controller_Admin extends Controller_Base
 					}
 					else
 					{
-						$this->template->set_global('login_error', 'Login failed!');
+						$this->template->set_global('login_error', 'Username or password mismatch!');
 					}
 				}
 				else
@@ -95,7 +95,7 @@ class Controller_Admin extends Controller_Base
 	public function action_index()
 	{
 		$this->template->title = 'Dashboard';
-		$this->template->content = View::forge('admin/dashboard');
+		$this->template->content = View::forge('admin/clearanceform/create');
 	}
 
 }

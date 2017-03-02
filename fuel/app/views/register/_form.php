@@ -1,10 +1,8 @@
+
+<?php echo Form::open(array("class"=>"form-horizontal col-md-4 col-md-offset-4 register-wrapper","enctype"=>"multipart/form-data")); ?>
 <center>
 			<h1>Register</h1>
 </center>
-<?php echo Form::open(array("class"=>"form-horizontal col-md-4 col-md-offset-4","enctype"=>"multipart/form-data")); ?>
-
-
-
 	<fieldset>
 	<div class="form-group">
 			<?php echo Form::label('Profile Pic', 'profile', array('class'=>'control-label')); ?>
@@ -52,9 +50,9 @@
 
 		</div>
 	
-		<div class="form-group">
-			<?php echo Form::submit('submit', 'Save', array('class' => 'btn btn-primary btn-block')); ?>	
-			<?php echo Html::anchor('admin/login', 'Already Got Account', array('class' => 'btn btn-info btn-block')); ?>	
+		<div class="form-group" style="margin-top:10px;">
+			<?php echo Form::submit('submit', 'Save', array('class' => 'btn btn-primary col-md-5')); ?>	
+			<?php echo Html::anchor('admin/login', 'Already Got Account', array('class' => 'btn btn-info btn btn-info col-md-5 col-md-offset-2')); ?>	
 
 		</div>
 

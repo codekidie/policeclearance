@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title><?php echo $title; ?></title>
-	<?php echo Asset::css('bootstrap.css'); ?>
+	<?php echo Asset::css(array('bootstrap.css','custom.css')); ?>
 	<style>
 		body { margin: 40px; }
 	</style>
@@ -29,7 +29,7 @@
 <?php endif; ?>
 		</div>
 		<div class="col-md-12">
-<?php echo $content; ?>
+			<?php echo $content; ?>
 		</div>
 		
 	</div>

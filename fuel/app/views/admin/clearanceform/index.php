@@ -1,3 +1,5 @@
+<section class="content">
+
 <h2>Listing Clearance forms</h2>
 <br>
 <?php if ($clearanceforms): ?>
@@ -43,3 +45,4 @@
 	<?php //echo Html::anchor('admin/clearanceform/create', 'Add new Clearanceform', array('class' => 'btn btn-success')); ?>
 
 </p>
+</section>

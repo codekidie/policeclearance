@@ -11,14 +11,16 @@
 		'plugins/morris/morris.css',
 		'plugins/jvectormap/jquery-jvectormap-1.2.2.css',
 		'plugins/daterangepicker/daterangepicker.css',
-		'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')); 
+		'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
+		'plugins/select2/select2.min.css',
+		'custom.css')); 
 	?>
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-	
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -87,10 +89,11 @@
 					}
 				?>
 		<?php endif ?>
+
 		<!-- End navigation for admin users -->
 		<!-- Navigation For normal users -->
 		<?php if (Auth::get('group') == 50): ?>
-			<li><?php echo Html::anchor('admin/clearanceform/create', 'Apply Clearance') ?></li>
+			<li><?php echo Html::anchor('admin/clearanceform/create', '<i class="fa fa-user" aria-hidden="true"></i>Apply Clearance') ?></li>
 		<?php endif ?>
 		<!-- End Navigation For normal users -->
 		
@@ -156,9 +159,6 @@
 	<?php if (!$current_user): ?>
 
 <div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<hr>
 <?php if (Session::get_flash('success')): ?>
 				<div class="alert alert-success alert-dismissable">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -175,12 +175,9 @@
 					</p>
 				</div>
 <?php endif; ?>
-			</div>
 			<div class="col-md-12">
 <?php echo $content; ?>
 			</div>
-		</div>
-		<hr/>
 		
 	</div>
 <?php endif; ?>
