@@ -13,6 +13,7 @@
 		'plugins/daterangepicker/daterangepicker.css',
 		'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
 		'plugins/select2/select2.min.css',
+		'vendor/datatables.net-bs/css/dataTables.bootstrap.min.css',
 		'custom.css')); 
 	?>
 
@@ -23,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-purple sidebar-mini">
 <?php if ($current_user): ?>
 <div class="wrapper">
 
@@ -59,8 +60,11 @@
            <?php echo Html::img('files/'.$filename, array("alt" => "User Image", 'class' => "img-circle")); ?>
         </div>
         <div class="pull-left info">
+        <?php if (!empty(Auth::get('firstname'))): ?>
           <p><?php echo Auth::get('firstname').' '.Auth::get('middlename').' '.Auth::get('lastname'); ?></p>
-          
+        <?php else: ?>
+        	<p>Administrator</p>
+        <?php endif ?>
         </div>
       </div>  
       <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -81,7 +85,7 @@
 						?>
 						<li class="<?php echo Uri::segment(2) == $section_segment ? 'active' : '' ?>">
 						<?php if ($section_title == "Clearanceform"): ?>
-								<?php $section_title = "Clearance Form"; ?>
+								<?php $section_title = "<i class='fa fa-fw fa-envelope'></i>Clearance Form"; ?>
 						<?php endif ?>
 							<?php echo Html::anchor('admin/'.$section_segment, $section_title) ?>
 						</li>
@@ -93,11 +97,11 @@
 		<!-- End navigation for admin users -->
 		<!-- Navigation For normal users -->
 		<?php if (Auth::get('group') == 50): ?>
-			<li><?php echo Html::anchor('admin/clearanceform/create', '<i class="fa fa-user" aria-hidden="true"></i>Apply Clearance') ?></li>
+			<li><?php echo Html::anchor('admin/clearanceform/create', '<i class="fa fa-fw fa-envelope"></i> Apply Clearance') ?></li>
 		<?php endif ?>
 		<!-- End Navigation For normal users -->
 		
-		<li><?php echo Html::anchor('admin/logout', 'Logout') ?></li>
+		<li><?php echo Html::anchor('admin/logout', '<i class="fa fa-fw fa-power-off"></i> Logout') ?></li>
       </ul>
 
     </section>
@@ -197,9 +201,12 @@
 		'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js',
 		'plugins/slimScroll/jquery.slimscroll.min.js',
 		'plugins/fastclick/fastclick.js',
+		'vendor/datatables.net-bs/js/dataTables.bootstrap.min.js',
+        'vendor/datatables/media/js/jquery.dataTables.min.js',
 		'dist/js/app.min.js',
 		'dist/js/pages/dashboard.js',
-		'dist/js/demo.js'
+		'dist/js/demo.js',
+		'jQuery.print.js'
 	)); ?>
 
 
@@ -215,7 +222,76 @@
 
 <!-- daterangepicker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script type="text/javascript">
+function printclearance()
+{	
+	$("#myElementId").print({
+	    addGlobalStyles : true,
+	    stylesheet : null,
+	    rejectWindow : true,
+	    noPrintSelector : ".no-print",
+	    iframe : true,
+	    append : null,
+	    prepend : null
+	});
+}
 
+$('#tbl1').dataTable();
+$('#tbl2').dataTable();
+$('#tbl3').dataTable();
+$('#tbl4').dataTable();
+$('#tbl5').dataTable();
+$('#tbl6').dataTable();
+
+$('#purpose').change(function() {
+  var data = $( this ).val();
+		if (data == "Local Employment") {
+			$('#payment').val("PHP 25");
+		}
+		if (data == "Drivers License") {
+			$('#payment').val("PHP 25");
+		}
+		if (data == "Bank Requirement") {
+			$('#payment').val("PHP 25");
+		}
+		if (data == "Personal Identification") {
+			$('#payment').val("PHP 25");
+		}
+		if (data == "SSS Requirements") {
+			$('#payment').val("PHP 25");
+		}
+		if (data == "School Requirement") {
+			$('#payment').val("PHP 25");
+		}
+		if (data == "FED / FEU Requirement") {
+			$('#payment').val("PHP 25");
+		}
+		if (data == "Travel and Employment Abroad") {
+			$('#payment').val("PHP 200");
+		}
+		if (data == "Visa and Passport Requirements") {
+			$('#payment').val("PHP 200");
+		}
+		if (data == "Immigration  Requirement") {
+			$('#payment').val("PHP 200");
+		}
+		if (data == "Change of entry birth cirtificate correction") {
+			$('#payment').val("PHP 200");
+		}
+		if (data == "Seamans Visa") {
+			$('#payment').val("PHP 200");
+		}
+		if (data == "Fiancee Visa") {
+			$('#payment').val("PHP 200");
+		}
+		if (data == "Adoption Requirement") {
+			$('#payment').val("PHP 200");
+		}
+		if (data == "Firearms License") {
+			$('#payment').val("PHP 400");
+		}
+});	
+</script>
 
 </body>
 </html>

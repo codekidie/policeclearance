@@ -8,6 +8,7 @@ class Model_Clearanceform extends Model
 		'fileno',
 		'orno',
 		'firstname',
+		'payment',
 		'middlename',
 		'lastname',
 		'address',

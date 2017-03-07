@@ -10,24 +10,25 @@
 						 ->execute();
 
 		foreach ($data as $d) {
-			$id         =  $d['id'];
-			$firstname  =  $d['firstname'];
-			$middlename =  $d['middlename'];
-			$lastname   =  $d['lastname'];
-			$address    =  $d['address'];
-			$sex 		=  $d['sex'];
-		    $civilstatus  =  $d['civilstatus'];
-		    $fileno  =  $d['fileno'];
-		    $orno  =  $d['orno'];
-		    $dateofbirth  = $d['dateofbirth'];
-		    $placeofbirth = $d['placeofbirth'];
-			$comtaxno   = $d['comtaxno'];
-			$issuedat   =  $d['issuedat'];
-			$issuedon   =  $d['issuedon'];
-			$purpose    = $d['purpose'];
+			$id            =  $d['id'];
+			$firstname     =  $d['firstname'];
+			$middlename    =  $d['middlename'];
+			$lastname      =  $d['lastname'];
+			$address       =  $d['address'];
+			$sex 		   =  $d['sex'];
+		    $civilstatus   =  $d['civilstatus'];
+		    $fileno        =  $d['fileno'];
+		    $orno          =  $d['orno'];
+		    $dateofbirth   = $d['dateofbirth'];
+		    $placeofbirth  = $d['placeofbirth'];
+			$comtaxno      = $d['comtaxno'];
+			$issuedat      =  $d['issuedat'];
+			$issuedon      =  $d['issuedon'];
+			$purpose       = $d['purpose'];
+			$payment       = $d['payment'];
 		 	$contactnumber = $d['contactnumber'];
-			$created_at = $d['created_at'];
-			$updated_at = $d['updated_at'];
+			$created_at    = $d['created_at'];
+			$updated_at    = $d['updated_at'];
 		 }
 
 		 $query_count =  DB::count_last_query();
@@ -48,6 +49,7 @@
 		    $issuedat        = "";
 		    $issuedon        = "";
 		    $purpose         = "";
+		    $payment         = "";
 		    $contactnumber   = "";
 		    $created_at      = "";
 		    $updated_at      = "";	
@@ -72,6 +74,7 @@
 		    $issuedat        = $clearanceform->issuedat;
 		    $issuedon        = $clearanceform->issuedon;
 		    $purpose         = $clearanceform->purpose;
+		    $payment         = $clearanceform->payment;
 		    $contactnumber   = $clearanceform->contactnumber;
 		    $created_at      = $clearanceform->created_at;
 		    $updated_at      = $clearanceform->updated_at;
@@ -91,6 +94,7 @@
 		    $issuedat        = "";
 		    $issuedon        = "";
 		    $purpose         = "";
+		    $payment         = "";
 		    $contactnumber   = "";
 		    $created_at      = "";
 		    $updated_at      = "";
@@ -142,7 +146,7 @@
 
 		                <div class="input-group">
 		                  <div class="input-group-addon">
-		                    <i class="fa fa-clock-o"></i>
+		                    <i class="fa fa-user"></i>
 		                  </div>
 		                 <?php echo Form::input('firstname', Input::post('firstname', $firstname), array('class' => 'col-md-4 form-control', 'placeholder'=>'Firstname')); ?>
 		                </div>
@@ -154,7 +158,7 @@
 
 		                <div class="input-group">
 		                  <div class="input-group-addon">
-		                    <i class="fa fa-clock-o"></i>
+		                    <i class="fa fa-user"></i>
 		                  </div>
 		               	<?php echo Form::input('middlename', Input::post('middlename', $middlename), array('class' => 'col-md-4 form-control', 'placeholder'=>'Middlename')); ?>
 		                </div>
@@ -162,16 +166,28 @@
 		              </div>
 
 		                <div class="form-group col-md-3" style="margin-left: 10px;">
-		                <label>Last Name:</label>
+			                <label>Last Name:</label>
 
-		                <div class="input-group">
-		                  <div class="input-group-addon">
-		                    <i class="fa fa-clock-o"></i>
-		                  </div>
-		               <?php echo Form::input('lastname', Input::post('lastname', $lastname), array('class' => 'col-md-4 form-control', 'placeholder'=>'Lastname')); ?>
-		                </div>
-		                <!-- /.input group -->
-		              </div>
+			                <div class="input-group">
+			                  <div class="input-group-addon">
+			                    <i class="fa fa-user"></i>
+			                  </div>
+			             		  <?php echo Form::input('lastname', Input::post('lastname', $lastname), array('class' => 'col-md-4 form-control', 'placeholder'=>'Lastname')); ?>
+			                </div>
+			                <!-- /.input group -->
+		               </div>
+
+		               <div class="form-group col-md-3" style="margin-left: 10px;">
+			                <label>Address:</label>
+
+			                <div class="input-group">
+			                  <div class="input-group-addon">
+			                    <i class="fa fa-user"></i>
+			                  </div>
+			             		  <?php echo Form::input('address', Input::post('address', $address), array('class' => 'col-md-4 form-control', 'placeholder'=>'Address')); ?>
+			                </div>
+			                <!-- /.input group -->
+		               </div>
               </div>
 
               <div class="row">
@@ -273,13 +289,88 @@
 						<div class="form-group col-md-12">
 							<?php echo Form::label('Purpose', 'purpose', array('class'=>'control-label')); ?>
 
-								<?php echo Form::textarea('purpose', Input::post('purpose', $purpose), array('class' => 'col-md-8 form-control', 'rows' => 3, 'placeholder'=>'Purpose')); ?>
+								<?php //echo Form::textarea('purpose', Input::post('purpose', $purpose), array('class' => 'col-md-8 form-control', 'rows' => 3, 'placeholder'=>'Purpose')); ?>
+								<select class="form-control" name="purpose" id="purpose">
+									<?php
+										$selected = "";
+										if (isset($purpose)) {
+											if ($purpose == "Local Employment") {
+												$selected = "selected";
+											}
+											if ($purpose == "Drivers License") {
+												$selected = "selected";
+											}
+											if ($purpose == "Bank Requirement") {
+												$selected = "selected";
+											}
+											if ($purpose == "Personal Identification") {
+												$selected = "selected";
+											}
+											if ($purpose == "SSS Requirements") {
+												$selected = "selected";
+											}
+											if ($purpose == "School Requirement") {
+												$selected = "selected";
+											}
+											if ($purpose == "FED / FEU Requirement") {
+												$selected = "selected";
+											}
+											if ($purpose == "Travel and Employment Abroad") {
+												$selected = "selected";
+											}
+											if ($purpose == "Visa and Passport Requirements") {
+												$selected = "selected";
+											}
+											if ($purpose == "Immigration  Requirement") {
+												$selected = "selected";
+											}
+											if ($purpose == "Change of entry birth cirtificate correction") {
+												$selected = "selected";
+											}
+											if ($purpose == "Seamans Visa") {
+												$selected = "selected";
+											}
+											if ($purpose == "Fiancee Visa") {
+												$selected = "selected";
+											}
+											if ($purpose == "Adoption Requirement") {
+												$selected = "selected";
+											}
+											if ($purpose == "Firearms License") {
+												$selected = "selected";
+											}
+										}
+									 
+									 ?>
+									<option $selected >Local Employment</option>
+									<option $selected >Drivers License</option>
+									<option $selected >Bank Requirement</option>
+									<option $selected >Personal Identification</option>
+									<option $selected >SSS Requirements</option>
+									<option $selected >School Requirement</option>
+									<option $selected >FED / FEU Requirement</option>
+									<option $selected >Travel and Employment Abroad</option>
+									<option $selected >Visa and Passport Requirements</option>
+									<option $selected >Immigration  Requirement</option>
+									<option $selected >Change of entry birth cirtificate correction</option>
+									<option $selected >Seamans Visa</option>
+									<option $selected >Fiancee Visa</option>
+									<option $selected >Adoption Requirement</option>
+									<option $selected >Firearms License</option>
+								</select>
+								</div>
+				    </div>
+					<div class="row">
+						<div class="col-md-3">		
+								<label>Payment</label>
+								<input type="text" name="payment" id="payment"  style="text-align:left !important;" class="form-control" readonly="" value="<?php if (isset($payment)){echo $payment;}?>">	
 						</div>
-						<br>
-					
-					<button type="submit"  class="btn bg-maroon btn-md btn-flat margin" style="margin:0px !important">Apply</button>
+					</div>	
+					<hr>	
+					<div class="row">
+						<button type="submit"  class="btn bg-maroon btn-md btn-flat margin" style="margin:0px !important">Apply</button>
+					</div>
 
-				</div>
 					
               </div>
             </div>

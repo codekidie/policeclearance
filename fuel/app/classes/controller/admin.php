@@ -51,10 +51,19 @@ class Controller_Admin extends Controller_Base
 						{
 							if (($id = $driver->get_user_id()) !== false)
 							{
-								// credentials ok, go right in
-								$current_user = Model\Auth_User::find($id[1]);
-								Session::set_flash('success', e('Welcome, '.$current_user->username));
-								Response::redirect('admin');
+								if (Auth::get('group') == 50) {
+									// credentials ok, go right in
+									$current_user = Model\Auth_User::find($id[1]);
+									Session::set_flash('success', e('Welcome, '.$current_user->username));
+									Response::redirect('admin');
+								}else if(Auth::get('group') == 100)
+								{
+									// credentials ok, go right in
+									$current_user = Model\Auth_User::find($id[1]);
+									Session::set_flash('success', e('Welcome, '.$current_user->username));
+									Response::redirect('admin/clearanceform');
+								}
+								
 							}
 						}
 					}

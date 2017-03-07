@@ -75,7 +75,7 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <h2 class="section-heading">Hassle Free Police Clearance System! </h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut odio vitae orci rutrum ultrices. Proin fringilla tincidunt sagittis. Vestibulum malesuada, metus in commodo commodo, elit metus condimentum magna, in auctor sem augue sed sapien.</p>
+                    <p>Police clearance is just one of the documents some employers require in the process of hiring new employees. It can also be a requirement for passports and other government IDs. One may avail their police clearance at their local police office.</p>
                   
                 </div>
             </div>

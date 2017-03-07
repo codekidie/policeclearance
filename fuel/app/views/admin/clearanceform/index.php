@@ -1,9 +1,16 @@
 <section class="content">
 
-<h2>Listing Clearance forms</h2>
-<br>
+
 <?php if ($clearanceforms): ?>
-<table class="table table-striped">
+<div class="col-md-12">
+          <div class="box box-primary">
+            <div class="box-header">
+              <h3 class="box-title">Listing Clearance Applicants</h3>
+            </div>
+            <div class="box-body">
+
+           
+<table class="table table-striped" id="tbl1">
 	<thead>
 		<tr>
 			<th>Fileno</th>
@@ -11,9 +18,9 @@
 			<th>Firstname</th>
 			<th>Middlename</th>
 			<th>Lastname</th>
-			<th>Address</th>
 			<th>Purpose</th>
 			<th>Contactnumber</th>
+			<th>Created At</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -25,13 +32,13 @@
 			<td><?php echo $item->firstname; ?></td>
 			<td><?php echo $item->middlename; ?></td>
 			<td><?php echo $item->lastname; ?></td>
-			<td><?php echo $item->address; ?></td>
 			<td><?php echo $item->purpose; ?></td>
 			<td><?php echo $item->contactnumber; ?></td>
+			<td><?php echo Date::time_ago($item->created_at); ?></td>
 			<td>
-				<?php echo Html::anchor('admin/clearanceform/view/'.$item->id, 'View'); ?> |
-				<?php echo Html::anchor('admin/clearanceform/edit/'.$item->id, 'Edit'); ?> |
-				<?php echo Html::anchor('admin/clearanceform/delete/'.$item->id, 'Delete', array('onclick' => "return confirm('Are you sure?')")); ?>
+				<?php echo Html::anchor('admin/clearanceform/view/'.$item->id, '<i class="fa fa-fw fa-eye"></i>'); ?> |
+				<?php echo Html::anchor('admin/clearanceform/edit/'.$item->id, '<i class="fa fa-fw fa-edit"></i>'); ?> |
+				<?php echo Html::anchor('admin/clearanceform/delete/'.$item->id, '<i class="fa fa-fw fa-trash-o"></i>', array('onclick' => "return confirm('Are you sure?')")); ?>
 
 			</td>
 		</tr>
@@ -45,4 +52,9 @@
 	<?php //echo Html::anchor('admin/clearanceform/create', 'Add new Clearanceform', array('class' => 'btn btn-success')); ?>
 
 </p>
+ </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+</div>
 </section>
