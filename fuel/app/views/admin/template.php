@@ -3,7 +3,9 @@
 <head>
 	<meta charset="utf-8">
 	<title><?php echo $title; ?></title>
-	<?php 						
+
+
+	<?php 		
 		echo Asset::css(array('bootstrap/css/bootstrap.min.css',
 		'dist/css/AdminLTE.min.css',
 		'dist/css/skins/_all-skins.min.css',
@@ -15,7 +17,11 @@
 		'plugins/select2/select2.min.css',
 		'vendor/datatables.net-bs/css/dataTables.bootstrap.min.css',
 		'custom.css')); 
+
 	?>
+
+
+  <link rel="stylesheet" media="print" href="/policeapp/assets/css/bootstrap.min.css">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -141,7 +147,7 @@
 				</div>
 		<?php endif; ?>
 		<?php echo $content; ?>
-
+			
     </section>
     <!-- /.content -->
   </div>

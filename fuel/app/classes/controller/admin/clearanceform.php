@@ -7,6 +7,9 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 		if (Auth::get('group') == 50) {
 			Response::redirect('admin/');
 		}
+
+		
+
 		$data['clearanceforms'] = Model_Clearanceform::find('all');
 		$this->template->title = "Clearance forms";
 		$this->template->content = View::forge('admin/clearanceform/index', $data);
@@ -47,6 +50,7 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 					$clearanceform->issuedon = Input::post('issuedon');
 					$clearanceform->purpose = Input::post('purpose');
 					$clearanceform->payment = Input::post('payment');
+					$clearanceform->schedule = Input::post('schedule');
 					$clearanceform->contactnumber = Input::post('contactnumber');
 
 					if ($clearanceform->save())
@@ -76,6 +80,7 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 							'comtaxno' => Input::post('comtaxno'),
 							'issuedat' => Input::post('issuedat'),
 							'issuedon' => Input::post('issuedon'),
+							'schedule' => Input::post('schedule'),
 							'payment' => Input::post('payment'),
 							'purpose' => Input::post('purpose'),
 							'contactnumber' => Input::post('contactnumber'),
@@ -138,6 +143,7 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 			$clearanceform->issuedon = Input::post('issuedon');
 			$clearanceform->purpose = Input::post('purpose');
 			$clearanceform->contactnumber = Input::post('contactnumber');
+			$clearanceform->schedule = Input::post('schedule');
 			$clearanceform->payment = Input::post('payment');
 
 			if ($clearanceform->save())

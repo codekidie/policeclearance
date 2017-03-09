@@ -49,8 +49,13 @@
 	<p>
 		<strong>Payment:</strong>
 		<?php echo $clearanceform->payment; ?></p>
+
 	<p>
-		<strong>Contactnumber:</strong>
+		<strong>Schedule:</strong>
+		<?php echo $clearanceform->schedule; ?></p>
+			
+	<p>
+		<strong>Contact number:</strong>
 		<?php echo $clearanceform->contactnumber; ?></p>
 </div>
 	

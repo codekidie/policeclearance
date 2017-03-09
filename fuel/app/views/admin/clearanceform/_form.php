@@ -26,6 +26,7 @@
 			$issuedon      =  $d['issuedon'];
 			$purpose       = $d['purpose'];
 			$payment       = $d['payment'];
+			$schedule       = $d['schedule'];
 		 	$contactnumber = $d['contactnumber'];
 			$created_at    = $d['created_at'];
 			$updated_at    = $d['updated_at'];
@@ -52,6 +53,7 @@
 		    $payment         = "";
 		    $contactnumber   = "";
 		    $created_at      = "";
+		    $schedule        = "";	
 		    $updated_at      = "";	
 		 
 		 }	
@@ -78,6 +80,7 @@
 		    $contactnumber   = $clearanceform->contactnumber;
 		    $created_at      = $clearanceform->created_at;
 		    $updated_at      = $clearanceform->updated_at;
+		    $schedule        = $clearanceform->schedule;
 		}else{
 			$id              = "";
 			$fileno          = "";
@@ -98,6 +101,7 @@
 		    $contactnumber   = "";
 		    $created_at      = "";
 		    $updated_at      = "";
+		    $schedule        = "";
 		}
 	}
 
@@ -111,10 +115,13 @@
           <div class="box box-primary">
             <div class="box-header">
               <h3 class="box-title">Clearance Form</h3>
+              <?php if (!empty($id)): ?>
+              			<button type="button" class="btn btn-info" onclick="printclearance()" style="float: right;"><i class="fa fa-fw fa-print"></i> Print</button>
+              <?php endif ?>
             </div>
-            <div class="box-body" style="padding: 30px !important;">
+            <div class="box-body"  id="myElementId" style="padding: 30px !important;">
              <div class="row">
-	              <div class="form-group col-md-3">
+	              <div class="form-group col-md-3 col-sm-3">
 		                  <label>File No:</label>
 		                  <div class="input-group date">
 		                  <div class="input-group-addon">
@@ -128,7 +135,7 @@
 	              <!-- /.form group -->
 
 	              <!-- Date range -->
-	              <div class="form-group col-md-3" style="margin-left: 10px;">
+	              <div class="form-group col-md-3 col-sm-3" style="margin-left: 10px;">
 	                      <label>Or no:</label>
 		                   <div class="input-group">
 			                   <div class="input-group-addon">
@@ -138,10 +145,23 @@
 			                </div>
 	                <!-- /.input group -->
 	              </div>
+
+
+	               <div class="form-group col-md-3 col-sm-3" style="margin-left: 10px;">
+	                      <label>Schedule :</label>
+		                   <div class="input-group">
+			                   <div class="input-group-addon">
+			                    <i class="fa fa-calendar"></i>
+			                   </div>
+				                 <?php echo Form::input('schedule', Input::post('schedule', $schedule ), array('class' => 'col-md-4 form-control', 'type'=>'date')); ?>
+			                </div>
+	                <!-- /.input group -->
+	              </div>
+
              </div> 
               <!-- /.form group -->
              <div class="row">
-		              <div class="form-group col-md-3">
+		              <div class="form-group col-md-3 col-sm-3">
 		                <label>First Name:</label>
 
 		                <div class="input-group">
@@ -153,7 +173,7 @@
 		                <!-- /.input group -->
 		              </div>
 
-		              <div class="form-group col-md-3" style="margin-left: 10px;">
+		              <div class="form-group col-md-3 col-sm-3" style="margin-left: 10px;">
 		                <label>Middle Name:</label>
 
 		                <div class="input-group">
@@ -165,7 +185,7 @@
 		                <!-- /.input group -->
 		              </div>
 
-		                <div class="form-group col-md-3" style="margin-left: 10px;">
+		                <div class="form-group col-md-3 col-sm-3" style="margin-left: 10px;">
 			                <label>Last Name:</label>
 
 			                <div class="input-group">
@@ -177,7 +197,7 @@
 			                <!-- /.input group -->
 		               </div>
 
-		               <div class="form-group col-md-3" style="margin-left: 10px;">
+		               <div class="form-group col-md-3 col-sm-3" style="margin-left: 10px;">
 			                <label>Address:</label>
 
 			                <div class="input-group">
@@ -191,7 +211,7 @@
               </div>
 
               <div class="row">
-	              	<div class="form-group col-md-3">
+	              	<div class="form-group col-md-3 col-sm-3">
 						<?php echo Form::label('Sex', 'sex', array('class'=>'control-label')); ?>
 						<select name="sex" class="col-md-4 form-control">
 						<?php if(isset($clearanceform)){
@@ -210,7 +230,7 @@
 						</select>
 					</div>
 
-					<div class="form-group col-md-3" style="margin-left:10px;">
+					<div class="form-group col-md-3 col-sm-3" style="margin-left:10px;" >
 							<?php echo Form::label('Civilstatus', 'civilstatus', array('class'=>'control-label')); ?>
 
 							<select name="civilstatus" class="col-md-4 form-control">
@@ -247,38 +267,37 @@
 							</select>
 					</div>
 
-					<div class="form-group col-md-3" style="margin-left: 10px;">
+					<div class="form-group col-md-3 col-sm-3" style="margin-left: 10px;">
 						<?php echo Form::label('Dateofbirth', 'dateofbirth', array('class'=>'control-label')); ?>
 						<input type="date" name="dateofbirth" class="col-md-4 form-control" value="<?php echo $dateofbirth;?>" >
 					</div>
 
-					<div class="form-group col-md-3" style="margin-left: 10px;">
+					<div class="form-group col-md-3 col-sm-3" style="margin-left: 10px;">
 					<?php echo Form::label('Contactnumber', 'contactnumber', array('class'=>'control-label')); ?>
 					<?php echo Form::input('contactnumber', Input::post('contactnumber', $contactnumber), array('class' => 'col-md-4 form-control', 'placeholder'=>'Contactnumber')); ?>
 					</div>
 
-
               </div>
                <div class="row">
-              		<div class="form-group col-md-3">
+              		<div class="form-group col-md-3 col-sm-3">
 						<?php echo Form::label('Place of birth', 'placeofbirth', array('class'=>'control-label')); ?>
 
 							<?php echo Form::input('placeofbirth', Input::post('placeofbirth', $placeofbirth), array('class' => 'col-md-4 form-control', 'placeholder'=>'Placeofbirth')); ?>
 					</div>
-					<div class="form-group col-md-3" style="margin-left: 10px;">
+					<div class="form-group col-md-3 col-sm-3" style="margin-left: 10px;">
 						<?php echo Form::label('Com tax no:', 'comtaxno', array('class'=>'control-label')); ?>
 
 							<?php echo Form::input('comtaxno', Input::post('comtaxno', $comtaxno), array('class' => 'col-md-4 form-control', 'placeholder'=>'Comtaxno')); ?>
 
 					</div>
-					<div class="form-group col-md-3" style="margin-left: 10px;">
+					<div class="form-group col-md-3 col-sm-3" style="margin-left: 10px;">
 						<?php echo Form::label('Issued at', 'issuedat', array('class'=>'control-label')); ?>
 
 							<?php echo Form::input('issuedat', Input::post('issuedat', $issuedat), array('class' => 'col-md-4 form-control', 'placeholder'=>'Issuedat')); ?>
 
 					</div>
 
-					<div class="form-group col-md-3" style="margin-left: 10px;">
+					<div class="form-group col-md-3 col-sm-3" style="margin-left: 10px;">
 						<?php echo Form::label('Issuedon', 'issuedon', array('class'=>'control-label')); ?>
 
 							<?php echo Form::input('issuedon', Input::post('issuedon',$issuedon), array('class' => 'col-md-4 form-control', 'placeholder'=>'Issuedon','type'=>'date')); ?>
@@ -361,7 +380,7 @@
 								</div>
 				    </div>
 					<div class="row">
-						<div class="col-md-3">		
+						<div class="col-md-3 col-sm-3">		
 								<label>Payment</label>
 								<input type="text" name="payment" id="payment"  style="text-align:left !important;" class="form-control" readonly="" value="<?php if (isset($payment)){echo $payment;}?>">	
 						</div>

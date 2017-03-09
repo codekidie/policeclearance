@@ -13,6 +13,7 @@ class Model_Clearanceform extends Model
 		'lastname',
 		'address',
 		'sex',
+		'schedule',
 		'civilstatus',
 		'dateofbirth',
 		'placeofbirth',
