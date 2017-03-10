@@ -105,76 +105,38 @@ class Controller_Admin extends Controller_Base
 	{
 		if (Input::method() == 'POST')
 		{
-				if (!empty(Input::post('id'))) {
-					$clearanceform = Model_Clearanceform::find(Input::post('id'));
-					$clearanceform->fileno = Input::post('fileno');
-					$clearanceform->orno = Input::post('orno');
-					$clearanceform->firstname = Input::post('firstname');
-					$clearanceform->middlename = Input::post('middlename');
-					$clearanceform->lastname = Input::post('lastname');
-					$clearanceform->address = Input::post('address');
-					$clearanceform->sex = Input::post('sex');
-					$clearanceform->civilstatus = Input::post('civilstatus');
-					$clearanceform->dateofbirth = Input::post('dateofbirth');
-					$clearanceform->placeofbirth = Input::post('placeofbirth');
-					$clearanceform->comtaxno = Input::post('comtaxno');
-					$clearanceform->issuedat = Input::post('issuedat');
-					$clearanceform->issuedon = Input::post('issuedon');
-					$clearanceform->purpose = Input::post('purpose');
-					$clearanceform->payment = Input::post('payment');
-					$clearanceform->schedule = Input::post('schedule');
-					$clearanceform->contactnumber = Input::post('contactnumber');
+			
+			    $clearanceform = Model_Clearanceform::forge(array(
+					'fileno' => Input::post('fileno'),
+					'orno' => Input::post('orno'),
+					'firstname' => Input::post('firstname'),
+					'middlename' => Input::post('middlename'),
+					'lastname' => Input::post('lastname'),
+					'address' => Input::post('address'),
+					'sex' => Input::post('sex'),
+					'civilstatus' => Input::post('civilstatus'),
+					'dateofbirth' => Input::post('dateofbirth'),
+					'placeofbirth' => Input::post('placeofbirth'),
+					'comtaxno' => Input::post('comtaxno'),
+					'issuedat' => Input::post('issuedat'),
+					'issuedon' => Input::post('issuedon'),
+					'schedule' => Input::post('schedule'),
+					'payment' => Input::post('payment'),
+					'purpose' => Input::post('purpose'),
+					'contactnumber' => Input::post('contactnumber'),
+				));
 
-					if ($clearanceform->save())
-					{
-						Session::set_flash('success', e('Application Updated Success'));
+				if ($clearanceform and $clearanceform->save())
+				{
+					if (Auth::get('group') == 100) {
+						Session::set_flash('success', e('Added clearance form #'.$clearanceform->id.'.'));
+						Response::redirect('admin/clearanceform');
+					}else if (Auth::get('group') == 50) {
+						Session::set_flash('success', e('Application Successfully Submitted'));
 						Response::redirect('admin/clearanceform/create');
 					}
-
-					else
-					{
-						Session::set_flash('success', e('Application could not be updated!'));
-						Response::redirect('admin/clearanceform/create');
-					}
-
-				}else{
-					    $clearanceform = Model_Clearanceform::forge(array(
-							'fileno' => Input::post('fileno'),
-							'orno' => Input::post('orno'),
-							'firstname' => Input::post('firstname'),
-							'middlename' => Input::post('middlename'),
-							'lastname' => Input::post('lastname'),
-							'address' => Input::post('address'),
-							'sex' => Input::post('sex'),
-							'civilstatus' => Input::post('civilstatus'),
-							'dateofbirth' => Input::post('dateofbirth'),
-							'placeofbirth' => Input::post('placeofbirth'),
-							'comtaxno' => Input::post('comtaxno'),
-							'issuedat' => Input::post('issuedat'),
-							'issuedon' => Input::post('issuedon'),
-							'schedule' => Input::post('schedule'),
-							'payment' => Input::post('payment'),
-							'purpose' => Input::post('purpose'),
-							'contactnumber' => Input::post('contactnumber'),
-						));
-
-						if ($clearanceform and $clearanceform->save())
-						{
-							if (Auth::get('group') == 100) {
-								Session::set_flash('success', e('Added clearance form #'.$clearanceform->id.'.'));
-								Response::redirect('admin/clearanceform');
-							}else if (Auth::get('group') == 50) {
-								Session::set_flash('success', e('Application Successfully Submitted'));
-								Response::redirect('admin/clearanceform/create');
-							}
-							
-						}
-
-						else
-						{
-							Session::set_flash('error', e('Could not save clearanceform.'));
-						}
-					}
+					
+				}
 		}
 				
 		$this->template->title = 'Dashboard';

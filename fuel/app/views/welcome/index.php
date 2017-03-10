@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="https://blackrockdigital.github.io/startbootstrap-new-age/css/new-age.min.css">
 
-    
+      <link rel="stylesheet" type="text/css" href="https://blackrockdigital.github.io/startbootstrap-new-age/lib/device-mockups/device-mockups.min.css">
 </head>
 <body id="page-top">
 

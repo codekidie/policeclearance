@@ -19,7 +19,7 @@
 			<th>Middlename</th>
 			<th>Lastname</th>
 			<th>Purpose</th>
-			<th>Contactnumber</th>
+			<th>Schedule</th>
 			<th>Created At</th>
 			<th></th>
 		</tr>
@@ -33,7 +33,7 @@
 			<td><?php echo $item->middlename; ?></td>
 			<td><?php echo $item->lastname; ?></td>
 			<td><?php echo $item->purpose; ?></td>
-			<td><?php echo $item->contactnumber; ?></td>
+			<td><?php echo $item->schedule; ?></td>
 			<td><?php echo Date::time_ago($item->created_at); ?></td>
 			<td>
 				<?php echo Html::anchor('admin/clearanceform/view/'.$item->id, '<i class="fa fa-fw fa-eye"></i>'); ?> |

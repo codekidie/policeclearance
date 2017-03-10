@@ -104,6 +104,8 @@
 		<!-- Navigation For normal users -->
 		<?php if (Auth::get('group') == 50): ?>
 			<li><?php echo Html::anchor('admin/clearanceform/create', '<i class="fa fa-fw fa-envelope"></i> Apply Clearance') ?></li>
+
+			<li><?php echo Html::anchor('admin/clearanceform/', '<i class="fa fa-fw fa-list"></i> My Applications') ?></li>
 		<?php endif ?>
 		<!-- End Navigation For normal users -->
 		

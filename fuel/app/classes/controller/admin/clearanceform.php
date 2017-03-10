@@ -5,14 +5,26 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 	public function action_index()
 	{
 		if (Auth::get('group') == 50) {
-			Response::redirect('admin/');
+			
+			$data['clearanceforms'] = Model_Clearanceform::find('all');
+
+			$data['clearanceforms'] = Model_Clearanceform::find('all', array(
+			    'where' => array(
+			        array('firstname', Auth::get('firstname')),
+			        array('middlename', Auth::get('middlename')),
+			        array('lastname', Auth::get('lastname')),
+			    ),
+			    'order_by' => array('id' => 'desc'),
+			));
+
+			$this->template->title = "Clearance forms";
+			$this->template->content = View::forge('admin/clearanceform/index', $data);
+
+		}else{
+			$data['clearanceforms'] = Model_Clearanceform::find('all');
+			$this->template->title = "Clearance forms";
+			$this->template->content = View::forge('admin/clearanceform/index', $data);
 		}
-
-		
-
-		$data['clearanceforms'] = Model_Clearanceform::find('all');
-		$this->template->title = "Clearance forms";
-		$this->template->content = View::forge('admin/clearanceform/index', $data);
 
 	}
 
@@ -33,39 +45,7 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 
 			if ($val->run())
 			{
-				if (!empty(Input::post('id'))) {
-					$clearanceform = Model_Clearanceform::find(Input::post('id'));
-					$clearanceform->fileno = Input::post('fileno');
-					$clearanceform->orno = Input::post('orno');
-					$clearanceform->firstname = Input::post('firstname');
-					$clearanceform->middlename = Input::post('middlename');
-					$clearanceform->lastname = Input::post('lastname');
-					$clearanceform->address = Input::post('address');
-					$clearanceform->sex = Input::post('sex');
-					$clearanceform->civilstatus = Input::post('civilstatus');
-					$clearanceform->dateofbirth = Input::post('dateofbirth');
-					$clearanceform->placeofbirth = Input::post('placeofbirth');
-					$clearanceform->comtaxno = Input::post('comtaxno');
-					$clearanceform->issuedat = Input::post('issuedat');
-					$clearanceform->issuedon = Input::post('issuedon');
-					$clearanceform->purpose = Input::post('purpose');
-					$clearanceform->payment = Input::post('payment');
-					$clearanceform->schedule = Input::post('schedule');
-					$clearanceform->contactnumber = Input::post('contactnumber');
-
-					if ($clearanceform->save())
-					{
-						Session::set_flash('success', e('Application Updated Success'));
-						Response::redirect('admin/clearanceform/create');
-					}
-
-					else
-					{
-						Session::set_flash('success', e('Application could not be updated!'));
-						Response::redirect('admin/clearanceform/create');
-					}
-
-				}else{
+				
 					    $clearanceform = Model_Clearanceform::forge(array(
 							'fileno' => Input::post('fileno'),
 							'orno' => Input::post('orno'),
@@ -102,7 +82,6 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 						{
 							Session::set_flash('error', e('Could not save clearanceform.'));
 						}
-					}
 				}
 				
 			else
