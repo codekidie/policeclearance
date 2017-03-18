@@ -41,8 +41,17 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 	{
 		if (Input::method() == 'POST')
 		{
-			$val = Model_Clearanceform::validate('create');
 
+			$schedule = Input::post('schedule');
+			$result   = DB::select()->from('clearanceforms')->where('schedule', '=', $schedule)->execute();
+			$reserved = DB::count_last_query();
+			
+			if ($reserved >= 10) {
+				Session::set_flash('error', e('Error Adding Scheduled Date is Fully Reserved!'));
+				Response::redirect('admin/clearanceform/create');
+			}
+
+			$val = Model_Clearanceform::validate('create');
 			if ($val->run())
 			{
 				
@@ -92,11 +101,6 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 
 		  $this->template->title = "Clearance forms";
 		  $this->template->content = View::forge('admin/clearanceform/create');
-
-		
-		
-		  
-		
 
 	}
 
@@ -163,7 +167,7 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 
 			$this->template->set_global('clearanceform', $clearanceform, false);
 		}
-
+		
 		$this->template->title = "Clearance forms";
 		$this->template->content = View::forge('admin/clearanceform/edit');
 

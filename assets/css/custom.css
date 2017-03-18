@@ -276,3 +276,9 @@
     display: table-cell !important;
   }
 }
+
+
+.wrap-print>tbody>tr>td {
+  border:0px !important;
+}
+

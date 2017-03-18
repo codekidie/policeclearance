@@ -17,7 +17,7 @@
 			$address       =  $d['address'];
 			$sex 		   =  $d['sex'];
 		    $civilstatus   =  $d['civilstatus'];
-		    $fileno        =  $d['fileno'];
+		    $fileno        =  $d['id'];
 		    $orno          =  $d['orno'];
 		    $dateofbirth   = $d['dateofbirth'];
 		    $placeofbirth  = $d['placeofbirth'];
@@ -59,10 +59,11 @@
 		 }	
 
 	}else{
+		
 		if(isset($clearanceform))
 		{
 			$id              = $clearanceform->id;
-		    $fileno          = $clearanceform->fileno;
+		    $fileno          = $clearanceform->id;
 		    $orno            = $clearanceform->orno;
 		    $firstname       = $clearanceform->firstname;
 		    $middlename      = $clearanceform->middlename;
@@ -116,7 +117,7 @@
             <div class="box-header">
               <h3 class="box-title">Clearance Form</h3>
               <?php if (!empty($id)): ?>
-              			<button type="button" class="btn btn-info" onclick="printclearance()" style="float: right;"><i class="fa fa-fw fa-print"></i> Print</button>
+              			<!-- <button type="button" class="btn btn-info" onclick="printclearance()" style="float: right;"><i class="fa fa-fw fa-print"></i> Print</button> -->
               <?php endif ?>
             </div>
             <div class="box-body"  id="myElementId" style="padding: 30px !important;">
@@ -128,7 +129,7 @@
 		                    <i class="fa fa-hashtag"></i>
 		                  </div>
 	                	    <input type="hidden" name="id" value="<?php echo $id; ?>">
-							<?php echo Form::input('fileno', Input::post('fileno', $fileno), array('class' => 'col-md-4 form-control', 'placeholder'=>'Fileno')); ?>
+							<?php echo Form::input('fileno', Input::post('fileno', $fileno), array('class' => 'col-md-4 form-control','readonly'=>'readonly', 'placeholder'=>'Fileno')); ?>
 	                  </div>
 	                <!-- /.input group -->
 	              </div>
@@ -168,7 +169,14 @@
 		                  <div class="input-group-addon">
 		                    <i class="fa fa-user"></i>
 		                  </div>
-		                 <?php echo Form::input('firstname', Input::post('firstname', $firstname), array('class' => 'col-md-4 form-control', 'placeholder'=>'Firstname')); ?>
+		                  <?php if (Auth::get('group') == 50): ?>
+		                  	<?php 
+		                  		$firstname = Auth::get('firstname');
+		                  		$middlename = Auth::get('middlename');
+		                  		$lastname = Auth::get('lastname');
+		                  	 ?>	
+		                  <?php endif ?>
+		                 <?php echo Form::input('firstname', Input::post('firstname', $firstname), array('class' => 'col-md-4 form-control','readonly'=>'readonly', 'placeholder'=>'Firstname')); ?>
 		                </div>
 		                <!-- /.input group -->
 		              </div>
@@ -180,7 +188,7 @@
 		                  <div class="input-group-addon">
 		                    <i class="fa fa-user"></i>
 		                  </div>
-		               	<?php echo Form::input('middlename', Input::post('middlename', $middlename), array('class' => 'col-md-4 form-control', 'placeholder'=>'Middlename')); ?>
+		               	<?php echo Form::input('middlename', Input::post('middlename', $middlename), array('class' => 'col-md-4 form-control','readonly'=>'readonly', 'placeholder'=>'Middlename')); ?>
 		                </div>
 		                <!-- /.input group -->
 		              </div>
@@ -192,7 +200,7 @@
 			                  <div class="input-group-addon">
 			                    <i class="fa fa-user"></i>
 			                  </div>
-			             		  <?php echo Form::input('lastname', Input::post('lastname', $lastname), array('class' => 'col-md-4 form-control', 'placeholder'=>'Lastname')); ?>
+			             		  <?php echo Form::input('lastname', Input::post('lastname', $lastname), array('class' => 'col-md-4 form-control','readonly'=>'readonly', 'placeholder'=>'Lastname')); ?>
 			                </div>
 			                <!-- /.input group -->
 		               </div>

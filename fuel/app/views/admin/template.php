@@ -59,11 +59,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-        <?php $filename =  Auth::get('filename'); ?>
-        <?php if (empty($filename)): ?>
-        			<?php $filename = "no.png" ?>
-        <?php endif ?>
-           <?php echo Html::img('files/'.$filename, array("alt" => "User Image", 'class' => "img-circle")); ?>
+    		<br>
         </div>
         <div class="pull-left info">
         <?php if (!empty(Auth::get('firstname'))): ?>
@@ -140,6 +136,7 @@
 							</p>
 						</div>
 		<?php endif; ?>
+
 		<?php if (Session::get_flash('error')): ?>
 				<div class="alert alert-danger alert-dismissable">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

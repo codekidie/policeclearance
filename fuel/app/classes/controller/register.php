@@ -29,66 +29,34 @@ class Controller_Register extends Controller_Template
 	{
 		if (Input::method() == 'POST')
 		{
-			$val = Model_Register::validate('create');
+			
+		    	$filename = '';
 
-			if ($val->run())
-			{
-				$config = array(
-				    'path' => DOCROOT.'files',
-				    'randomize' => false,
-				    'ext_whitelist' => array('png', 'jpeg','jpg'),
+				$register = Auth::create_user(
+				    Input::post('username'),
+				    Input::post('password'),
+				    Input::post('email'),
+				    50,
+				    array(
+				        'firstname' => Input::post('firstname'),
+				        'middlename' => Input::post('middlename'),
+				        'lastname' => Input::post('lastname'),
+				        'filename' => $filename,
+				    )
 				);
 
-				// process the uploaded files in $_FILES
-				Upload::process($config);
-
-				// if there are any valid files
-				if (Upload::is_valid())
+				if ($register)
 				{
-				    // save them according to the config
-				    Upload::save();
-
-				    // call a model method to update the database
-				    foreach(Upload::get_files() as $file)
-					{
-					    $filename = $file['name'];
-
-							$register = Auth::create_user(
-							    Input::post('username'),
-							    Input::post('password'),
-							    Input::post('email'),
-							    50,
-							    array(
-							        'firstname' => Input::post('firstname'),
-							        'middlename' => Input::post('middlename'),
-							        'lastname' => Input::post('lastname'),
-							        'filename' => $filename,
-							    )
-							);
-
-
-							if ($register)
-							{
-								Session::set_flash('success', 'Registration Successful');
-
-								Response::redirect('register/create');
-							}
-							else
-							{
-								Session::set_flash('error', 'Could not save register.');
-							}
 					
-					}
-				    
+					Session::set_flash('success', 'Registration Successful');
 				}
-				
-			}
-			else
-			{
-				Session::set_flash('error', $val->error());
-			}
-		}
-
+				else
+				{
+					Session::set_flash('error', 'Could not save register.');
+				}
+		}		
+					
+					
 		$this->template->title = "Register";
 		$this->template->content = View::forge('register/create');
 

@@ -1,62 +1,24 @@
 <button class="btn btn-info" onclick="printclearance()" style="float: right;"><i class="fa fa-fw fa-print"></i> Print</button>
 
 <div id="myElementId">
-	<h2>Viewing Application File #<?php echo $clearanceform->id; ?></h2>
 
-	<p>
-		<strong>Fileno:</strong>
-		<?php echo $clearanceform->fileno; ?></p>
-	<p>
-		<strong>Orno:</strong>
-		<?php echo $clearanceform->orno; ?></p>
-	<p>
-		<strong>Firstname:</strong>
-		<?php echo $clearanceform->firstname; ?></p>
-	<p>
-		<strong>Middlename:</strong>
-		<?php echo $clearanceform->middlename; ?></p>
-	<p>
-		<strong>Lastname:</strong>
-		<?php echo $clearanceform->lastname; ?></p>
-	<p>
-		<strong>Address:</strong>
-		<?php echo $clearanceform->address; ?></p>
-	<p>
-		<strong>Sex:</strong>
-		<?php echo $clearanceform->sex; ?></p>
-	<p>
-		<strong>Civilstatus:</strong>
-		<?php echo $clearanceform->civilstatus; ?></p>
-	<p>
-		<strong>Dateofbirth:</strong>
-		<?php echo $clearanceform->dateofbirth; ?></p>
-	<p>
-		<strong>Placeofbirth:</strong>
-		<?php echo $clearanceform->placeofbirth; ?></p>
-	<p>
-		<strong>Comtaxno:</strong>
-		<?php echo $clearanceform->comtaxno; ?></p>
-	<p>
-		<strong>Issuedat:</strong>
-		<?php echo $clearanceform->issuedat; ?></p>
-	<p>
-		<strong>Issuedon:</strong>
-		<?php echo $clearanceform->issuedon; ?></p>
-	<p>
-		<strong>Purpose:</strong>
-		<?php echo $clearanceform->purpose; ?></p>
 
-	<p>
-		<strong>Payment:</strong>
-		<?php echo $clearanceform->payment; ?></p>
 
-	<p>
-		<strong>Schedule:</strong>
-		<?php echo $clearanceform->schedule; ?></p>
-			
-	<p>
-		<strong>Contact number:</strong>
-		<?php echo $clearanceform->contactnumber; ?></p>
+<table class="table wrap-print">
+	<tr><td>File No :</td><td><?php echo $clearanceform->id; ?></td><td>OR No :</td><td><?php echo $clearanceform->orno; ?></td></tr>
+	<tr><td>Full Name :</td><td><?php echo $clearanceform->lastname.", ".$clearanceform->firstname." ".$clearanceform->middlename; ?></td></tr>
+	<tr><td>Address :</td><td><?php echo $clearanceform->address; ?></td></tr>
+	<tr><td>Sex :</td><td><?php echo $clearanceform->sex; ?></td><td>Civil Status:</td><td><?php echo $clearanceform->civilstatus; ?></td></tr>
+	<tr><td>Date Of Bith :</td><td><?php echo $clearanceform->dateofbirth; ?></td><td>Place of Birth</td><td><?php echo $clearanceform->placeofbirth; ?></td></tr>
+	<tr><td>Comm tax no (Sedula) :</td><td><?php echo $clearanceform->comtaxno; ?></td><td>Issued at :</td><td><?php echo $clearanceform->issuedat; ?></td><td>Issued On :</td><td><?php echo $clearanceform->issuedon; ?></td></tr>
+	<tr><td >Purpose on securing clearance :</td><td ><?php echo $clearanceform->purpose; ?></td></tr>
+</table>
+			<p style="border-top:1px solid #000;text-align: center;width:200px;margin:20px;float: right;">Signature  of Applicant</p>	
+
+			<p  style="border-top:1px solid #000;text-align: center;width:200px;margin:20px;float: right;">Contact Number</p>
+
+			<br class="clear-fix">
+
 </div>
 	
 

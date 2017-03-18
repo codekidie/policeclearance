@@ -9,7 +9,7 @@
             </div>
             <div class="box-body">
 
-           
+  <div class="table-responsive">         
 <table class="table table-striped" id="tbl1">
 	<thead>
 		<tr>
@@ -25,9 +25,25 @@
 		</tr>
 	</thead>
 	<tbody>
-<?php foreach ($clearanceforms as $item): ?>		<tr>
+<?php foreach ($clearanceforms as $item): ?>
+<?php
 
-			<td><?php echo $item->fileno; ?></td>
+					$today =date_create(date("Y-m-d"));
+					$date = date_create($item->schedule);
+					$diff=date_diff($today,$date);
+
+			 		if ($diff->days > 3 && $diff->m == 0) {
+			 			$highlight = "warning";
+			 		}
+			 		else{
+			 			$highlight = "success";
+
+			 		}
+
+
+			 ?>
+			<tr class="<?php echo $highlight; ?>">
+			<td><?php echo $item->id; ?></td>
 			<td><?php echo $item->orno; ?></td>
 			<td><?php echo $item->firstname; ?></td>
 			<td><?php echo $item->middlename; ?></td>
@@ -44,7 +60,7 @@
 		</tr>
 <?php endforeach; ?>	</tbody>
 </table>
-
+</div>
 <?php else: ?>
 <p>No Clearanceforms.</p>
 

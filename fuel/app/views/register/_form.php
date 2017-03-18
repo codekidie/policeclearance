@@ -4,10 +4,9 @@
 			<h1>Register</h1>
 </center>
 	<fieldset>
-	<div class="form-group">
-			<?php echo Form::label('Profile Pic', 'profile', array('class'=>'control-label')); ?>
-			<input type="file" name="filename" class="col-md-4 form-control">
-		</div>
+			<div class="form-group">
+			<input type="file" name="filename" class="col-md-4 form-control" style="visibility: hidden;">
+			</div>
 
 		<div class="form-group">
 			<?php echo Form::label('First name', 'firstname', array('class'=>'control-label')); ?>
