@@ -28,18 +28,17 @@
 <?php foreach ($clearanceforms as $item): ?>
 <?php
 
-					$today =date_create(date("Y-m-d"));
-					$date = date_create($item->schedule);
-					$diff=date_diff($today,$date);
 
-			 		if ($diff->days > 3 && $diff->m == 0) {
+			 		$db_datetime = new DateTime($item->schedule);
+					$db_plus_three = $db_datetime->add(new DateInterval('P3D'));
+					$now_datetime = new DateTime();
+
+					if ($db_plus_three < $now_datetime) {
 			 			$highlight = "warning";
-			 		}
-			 		else{
+					}else{
 			 			$highlight = "success";
 
 			 		}
-
 
 			 ?>
 			<tr class="<?php echo $highlight; ?>">
