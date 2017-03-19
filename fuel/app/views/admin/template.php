@@ -89,6 +89,11 @@
 						<?php if ($section_title == "Clearanceform"): ?>
 								<?php $section_title = "<i class='fa fa-fw fa-envelope'></i>Clearance Form"; ?>
 						<?php endif ?>
+						<?php if ($section_title == "Schedules"): ?>
+								<?php $section_title = "<i class='fa fa-fw fa-clock-o'></i>Schedules"; 
+									$section_segment = "schedules/getschedules";
+								?>
+						<?php endif ?>
 							<?php echo Html::anchor('admin/'.$section_segment, $section_title) ?>
 						</li>
 						<?php

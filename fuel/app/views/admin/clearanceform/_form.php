@@ -142,7 +142,7 @@
 			                   <div class="input-group-addon">
 			                    <i class="fa fa-hashtag"></i>
 			                   </div>
-				                 <?php echo Form::input('orno', Input::post('orno', $orno ), array('class' => 'col-md-4 form-control', 'placeholder'=>'Orno')); ?>
+				                 <?php echo Form::input('orno', Input::post('orno', $orno ), array('class' => 'col-md-4 form-control', 'placeholder'=>'Orno','maxlength'=>'10')); ?>
 			                </div>
 	                <!-- /.input group -->
 	              </div>
@@ -282,7 +282,7 @@
 
 					<div class="form-group col-md-3 col-sm-3" style="margin-left: 10px;">
 					<?php echo Form::label('Contactnumber', 'contactnumber', array('class'=>'control-label')); ?>
-					<?php echo Form::input('contactnumber', Input::post('contactnumber', $contactnumber), array('class' => 'col-md-4 form-control', 'placeholder'=>'Contactnumber')); ?>
+					<?php echo Form::input('contactnumber', Input::post('contactnumber', $contactnumber), array('class' => 'col-md-4 form-control', 'placeholder'=>'Contactnumber','maxlength'=>'11')); ?>
 					</div>
 
               </div>
@@ -295,7 +295,7 @@
 					<div class="form-group col-md-3 col-sm-3" style="margin-left: 10px;">
 						<?php echo Form::label('Com tax no:', 'comtaxno', array('class'=>'control-label')); ?>
 
-							<?php echo Form::input('comtaxno', Input::post('comtaxno', $comtaxno), array('class' => 'col-md-4 form-control', 'placeholder'=>'Comtaxno')); ?>
+							<?php echo Form::input('comtaxno', Input::post('comtaxno', $comtaxno), array('class' => 'col-md-4 form-control', 'placeholder'=>'Comtaxno','maxlength'=>'15')); ?>
 
 					</div>
 					<div class="form-group col-md-3 col-sm-3" style="margin-left: 10px;">
