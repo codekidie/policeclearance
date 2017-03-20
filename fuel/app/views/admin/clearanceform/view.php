@@ -7,7 +7,7 @@
 <table class="table wrap-print">
 	<tr><td>File No :</td><td><?php echo $clearanceform->id; ?></td><td>OR No :</td><td><?php echo $clearanceform->orno; ?></td></tr>
 	<tr><td>Full Name :</td><td><?php echo $clearanceform->lastname.", ".$clearanceform->firstname." ".$clearanceform->middlename; ?></td></tr>
-	<tr><td>Address :</td><td><?php echo $clearanceform->address; ?></td></tr>
+	<tr><td>Address :</td><td><?php echo $clearanceform->address; ?></td> <td>Phone Number : </td><td><?php echo $clearanceform->contactnumber; ?></td></tr>
 	<tr><td>Sex :</td><td><?php echo $clearanceform->sex; ?></td><td>Civil Status:</td><td><?php echo $clearanceform->civilstatus; ?></td></tr>
 	<tr><td>Date Of Bith :</td><td><?php echo $clearanceform->dateofbirth; ?></td><td>Place of Birth</td><td><?php echo $clearanceform->placeofbirth; ?></td></tr>
 	<tr><td>Comm tax no (Sedula) :</td><td><?php echo $clearanceform->comtaxno; ?></td><td>Issued at :</td><td><?php echo $clearanceform->issuedat; ?></td><td>Issued On :</td><td><?php echo $clearanceform->issuedon; ?></td></tr>

@@ -21,6 +21,22 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 			$this->template->content = View::forge('admin/clearanceform/index', $data);
 
 		}else{
+
+			if (Input::method() == 'POST')
+			{
+
+				$data['searchdate'] = Model_Clearanceform::find('all', array(
+			    'where' => array(
+			        array('schedule', Input::post('searchdate')),
+			        ),
+			  		  'order_by' => array('id' => 'desc'),
+				));
+
+				$data['clearanceforms'] = Model_Clearanceform::find('all');
+				$this->template->title = "Clearance forms";
+				$this->template->content = View::forge('admin/clearanceform/index', $data);
+			}	
+
 			$data['clearanceforms'] = Model_Clearanceform::find('all');
 			$this->template->title = "Clearance forms";
 			$this->template->content = View::forge('admin/clearanceform/index', $data);
