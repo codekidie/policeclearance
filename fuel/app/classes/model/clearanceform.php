@@ -18,6 +18,7 @@ class Model_Clearanceform extends Model
 		'dateofbirth',
 		'placeofbirth',
 		'comtaxno',
+		'isprinted',
 		'issuedat',
 		'issuedon',
 		'purpose',

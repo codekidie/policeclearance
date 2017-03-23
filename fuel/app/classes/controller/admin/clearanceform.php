@@ -53,6 +53,17 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 
 	}
 
+	public function action_printid($id = null)
+	{
+		
+		$printed  = DB::update('clearanceforms')->value('isprinted', 1)->where('id', '=', $id)->execute();
+		$reserved = DB::count_last_query();
+		$data['clearanceform'] = Model_Clearanceform::find($id);
+
+		$this->template->title = "Clearanceform";
+		$this->template->content = View::forge('admin/clearanceform/view', $data);
+	}
+
 	public function action_create()
 	{
 		if (Input::method() == 'POST')

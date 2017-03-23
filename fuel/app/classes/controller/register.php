@@ -10,6 +10,24 @@ class Controller_Register extends Controller_Template
 
 	}
 
+		public function action_forget()
+	{
+		if (Input::method() == 'POST')
+		{
+				$username =	Input::post('username');
+				$reset = Auth::reset_password($username);
+
+			if ($reset)
+				{
+					
+					Session::set_flash('success', 'Your new password is '.$reset);
+				}
+		}
+		$this->template->title = "Forget Passowrd";
+		$this->template->content = View::forge('register/forget');
+
+	}
+
 	public function action_view($id = null)
 	{
 		is_null($id) and Response::redirect('register');

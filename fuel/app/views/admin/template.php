@@ -233,8 +233,18 @@
 <!-- daterangepicker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
 <script type="text/javascript">
-function printclearance()
+function printclearance(id)
 {	
+      $('#printerbuton').hide();
+
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//" + getUrl.host + "/policeapp/";
+
+	$.ajax({
+      url: baseUrl+"admin/clearanceform/printid/"+id,
+     }).done(function(data) {
+    });
+
 	$("#myElementId").print({
 	    addGlobalStyles : true,
 	    stylesheet : null,
@@ -244,6 +254,8 @@ function printclearance()
 	    append : null,
 	    prepend : null
 	});
+
+	
 }
 
 $('#tbl1').dataTable();

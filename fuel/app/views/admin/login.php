@@ -33,11 +33,16 @@
 				<?php endif; ?>
 			</div>
 
+
+
 			<div class="actions">
 				<?php echo Form::submit(array('value'=>'Login', 'name'=>'submit', 'class' => 'btn btn-md btn-primary btn-block')); ?>
 				<?php echo Html::anchor('register/create', 'Register', array('class' => 'btn btn-md btn-info btn-block')) ?>
+				<?php echo Html::anchor('register/forget', 'Forget Password', array('class' => 'btn btn-md btn-info btn-block')) ?>
 
 			</div>
+
+			
 
 		<?php echo Form::close(); ?>
 	</div>
