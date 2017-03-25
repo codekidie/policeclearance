@@ -22,6 +22,8 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 
 		}else{
 
+			
+
 			if (Input::method() == 'POST')
 			{
 
@@ -37,6 +39,15 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 				$this->template->content = View::forge('admin/clearanceform/index', $data);
 			}	
 
+
+			 $today = date("Y-m-d");
+			 $data['schednow'] = Model_Clearanceform::find('all', array(
+			    'where' => array(
+			        array('schedule', $today),
+			        ),
+			  		  'order_by' => array('id' => 'desc'),
+				));
+			 
 			$data['clearanceforms'] = Model_Clearanceform::find('all');
 			$this->template->title = "Clearance forms";
 			$this->template->content = View::forge('admin/clearanceform/index', $data);
