@@ -101,6 +101,10 @@
 				?>
 		<?php endif ?>
 
+   		<li class="">
+			<?php echo Html::anchor('admin/clearanceform/changepassowrd', "<i class='fa fa-fw fa-lock'></i>Change Password") ?>
+		</li>
+
 		<!-- End navigation for admin users -->
 		<!-- Navigation For normal users -->
 		<?php if (Auth::get('group') == 50): ?>

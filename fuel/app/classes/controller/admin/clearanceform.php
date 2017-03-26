@@ -55,6 +55,24 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 
 	}
 
+	public function action_changepassowrd()
+	{
+		
+
+		if (Input::method() == 'POST')
+		{
+			$oldpassword = Input::post('oldpass');
+			$newonce = Input::post('newpass');
+			$change = Auth::change_password($oldpassword,$newonce);
+			if ($change) {
+				Session::set_flash('success', e('Successfully change password!'));
+			}
+		}
+
+		$this->template->title = "Clearance forms";
+		$this->template->content = View::forge('admin/clearanceform/changepassword');
+	}
+
 	public function action_view($id = null)
 	{
 		$data['clearanceform'] = Model_Clearanceform::find($id);
