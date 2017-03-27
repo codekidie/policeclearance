@@ -7,9 +7,9 @@
 <div id="myElementId">
 
 
-
+<center><h2>Police Clearance Application</h2></center>
 <table class="table wrap-print">
-	<tr><td>File No :</td><td><?php echo $clearanceform->id; ?></td><td>OR No :</td><td><?php echo $clearanceform->orno; ?></td></tr>
+	<tr><td style="color:red" class="color-red">File No :</td><td style="color:red" class="color-red"><?php echo $clearanceform->id; ?></td><td>OR No :</td><td><?php echo $clearanceform->orno; ?></td></tr>
 	<tr><td>Full Name :</td><td><?php echo $clearanceform->lastname.", ".$clearanceform->firstname." ".$clearanceform->middlename; ?></td></tr>
 	<tr><td>Address :</td><td><?php echo $clearanceform->address; ?></td> <td>Phone Number : </td><td><?php echo $clearanceform->contactnumber; ?></td></tr>
 	<tr><td>Sex :</td><td><?php echo $clearanceform->sex; ?></td><td>Civil Status:</td><td><?php echo $clearanceform->civilstatus; ?></td></tr>

@@ -20,6 +20,14 @@
 
 	?>
 
+	<style type="text/css">
+		@media print {
+		   .color-red{
+		   	color:red !important;
+		   }
+		}
+	</style>
+
 
   <link rel="stylesheet" media="print" href="/policeapp/assets/css/bootstrap.min.css">
 

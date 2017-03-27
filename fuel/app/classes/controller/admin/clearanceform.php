@@ -97,6 +97,14 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 	{
 		if (Input::method() == 'POST')
 		{
+			$orexist = DB::select()->from('clearanceforms')->where('orno', '=', Input::post('orno'))->execute();
+
+			$num_rows = count($orexist);
+			
+			if ($num_rows != 0) {
+				Session::set_flash('error', e('Error Or# already exist!'));
+				Response::redirect('admin/clearanceform/create');	
+			}	
 
 			$schedule = Input::post('schedule');
 			$result   = DB::select()->from('clearanceforms')->where('schedule', '=', $schedule)->execute();
@@ -110,7 +118,7 @@ class Controller_Admin_Clearanceform extends Controller_Admin
 			$val = Model_Clearanceform::validate('create');
 			if ($val->run())
 			{
-				
+
 					    $clearanceform = Model_Clearanceform::forge(array(
 							'fileno' => Input::post('fileno'),
 							'orno' => Input::post('orno'),
